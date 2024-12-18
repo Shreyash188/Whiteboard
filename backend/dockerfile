@@ -1,0 +1,24 @@
+# Use an official Node.js runtime as a parent image
+FROM node:16
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy package.json and package-lock.json to install dependencies
+COPY package.json package-lock.json ./
+
+# Install the backend dependencies
+RUN npm install
+
+# Copy the rest of the application code
+COPY . .
+
+# Expose the port the app runs on
+EXPOSE 5000
+
+# Set the environment variable for Redis URL
+# Make sure this is configured in Render's environment settings
+ENV REDIS_URL=redis://red-cthhrg56l47c73ck1rm0:6379
+
+# Define the command to run your app
+CMD ["npm", "start"]

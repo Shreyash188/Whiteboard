@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whiteboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+</head>
+<body>
+    <div id="login-screen">
+        <h1>Whiteboard</h1>
+        <input type="text" id="username" placeholder="Enter your username">
+        <button id="login-btn">Login</button>
+    </div>
+    <div id="whiteboard-container" style="display: none;">
+        <h1>Welcome, <span id="user-display"></span></h1>
+        <div class="toolbar">
+            <label for="color-picker">Color:</label>
+            <input type="color" id="color-picker" value="#000000">
+            <label for="brush-size">Brush Size:</label>
+            <input type="range" id="brush-size" min="1" max="10" value="4">
+        </div>
+        <canvas id="whiteboard" width="800" height="600"></canvas>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
