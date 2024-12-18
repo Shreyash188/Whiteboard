@@ -1,13 +1,8 @@
-# Use the official Nginx image as a parent image
+
 FROM nginx:latest
 
-# Copy the frontend build to the Nginx container
-# Assuming the frontend build folder is './frontend/dist' or './frontend/build' depending on the framework
 COPY ./frontend /usr/share/nginx/html
 
-# Expose the port the app will run on (Nginx listens on port 80 by default)
 EXPOSE 80
 
-# Copy custom Nginx configuration if needed (you can use the default or configure it)
-# Make sure your nginx.conf is in the right place
 COPY ./frontend/nginx.conf /etc/nginx/conf.d/default.conf
