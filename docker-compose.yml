@@ -1,0 +1,40 @@
+services:
+  redis:
+    image: redis:latest
+    ports:
+      - "6380:6379"
+    deploy:
+      replicas: 1 #   Run a single Redis instance
+    networks:
+      - whiteboard-network
+
+  backend:
+    build:
+      context: ./backend # Builds from the backend directory
+    image: shreyash189/whiteboard-backend:latest # Replace with your Docker Hub username
+    environment:
+      - REDIS_HOST=redis
+    ports:
+      - "5001:5000" # Local mapping for backend
+    depends_on:
+      - redis
+    networks:
+      - whiteboard-network
+
+  frontend:
+    build:
+      context: ./frontend # Builds from the frontend directory
+    image: shreyash189/whiteboard-frontend:latest # Replace with your Docker Hub username
+    ports:
+      - "8080:80" # Local mapping for frontend
+    volumes:
+      - d:/Whiteboard/frontend:/usr/share/nginx/html # Use absolute path for Windows
+      - d:/Whiteboard/frontend/nginx.conf:/etc/nginx/conf.d/default.conf # Absolute path for Nginx config
+    depends_on:
+      - backend
+    networks:
+      - whiteboard-network
+
+networks:
+  whiteboard-network:
+    external: true

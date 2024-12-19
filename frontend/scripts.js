@@ -1,4 +1,4 @@
-const socket = io('https://whiteboard-backend-jzw7.onrender.com'); // Replace with your actual backend URL
+const socket = io(); // Connect to backend WebSocket
 
 // Canvas and user setup
 const canvas = document.getElementById("whiteboard");
